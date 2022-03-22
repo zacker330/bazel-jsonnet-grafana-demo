@@ -1,4 +1,4 @@
-local grafana = import 'grafonnet/grafana.libsonnet';
+local grafana = import 'grafana.libsonnet';
 local dashboard = grafana.dashboard;
 local template = grafana.template;
 local singlestat = grafana.singlestat;

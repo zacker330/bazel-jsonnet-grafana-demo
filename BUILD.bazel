@@ -5,7 +5,7 @@ jsonnet_to_json(
     name = "dashboard",
     src = "dashboard.jsonnet",
     outs = ["dashboard.json"],
-    imports = ["../"],
+#    imports = ["../"],
     deps = [
         "@grafonnet-lib//:grafonnet"
     ]
