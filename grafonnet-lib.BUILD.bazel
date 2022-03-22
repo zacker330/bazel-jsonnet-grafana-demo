@@ -4,6 +4,6 @@ jsonnet_library(
         name="grafonnet",
         visibility = ["//visibility:public"],
         srcs = glob([
-                           "grafonnet/*.jsonnet"
+                           "grafonnet/*.libsonnet"
        ])
 )
