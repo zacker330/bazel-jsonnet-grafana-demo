@@ -1,1 +1,12 @@
-/Users/jack/codebase/open-sources/jsonnet-grafana/BUILD.bazel
+load("@io_bazel_rules_jsonnet//jsonnet:jsonnet.bzl", "jsonnet_library", "jsonnet_to_json")
+
+
+jsonnet_to_json(
+    name = "dashboard",
+    src = "dashboard.jsonnet",
+    outs = ["dashboard.json"],
+    imports = ["grafonnet"],
+    deps = [
+        "@grafonnet-lib//:grafonnet"
+    ]
+)

@@ -1,1 +1,2 @@
-/Users/jack/codebase/open-sources/jsonnet-grafana/.gitignore
+bazel-*
+.idea/git
