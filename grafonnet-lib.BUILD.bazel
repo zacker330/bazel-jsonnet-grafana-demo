@@ -1,1 +1,9 @@
-/Users/jack/codebase/open-sources/jsonnet-grafana/grafonnet-lib.BUILD.bazel
+load("@io_bazel_rules_jsonnet//jsonnet:jsonnet.bzl", "jsonnet_library", "jsonnet_to_json")
+
+jsonnet_library(
+        name="grafonnet",
+        visibility = ["//visibility:public"],
+        srcs = glob([
+           "grafonnet/*.libsonnet"
+       ])
+)
