@@ -1,5 +1,11 @@
 load("@io_bazel_rules_jsonnet//jsonnet:jsonnet.bzl", "jsonnet_library", "jsonnet_to_json")
 
+filegroup(
+    name = "grafonnet-lib-buildfile",
+    srcs = [
+        "grafonnet-lib.BUILD.bazel",
+    ],
+)
 
 jsonnet_to_json(
     name = "dashboard",
