@@ -2,8 +2,11 @@ load("@io_bazel_rules_jsonnet//jsonnet:jsonnet.bzl", "jsonnet_library", "jsonnet
 
 jsonnet_to_json(
     name = "dashboard",
+    # where src located
     src = "dashboard.jsonnet",
+    # output filename
     outs = ["dashboard.json"],
+    # grafonnet provide many templates to generate dashboard json 
     deps = [
         "@grafonnet-lib//:grafonnet"
     ]
