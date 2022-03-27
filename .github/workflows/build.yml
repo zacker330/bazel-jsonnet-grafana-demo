@@ -53,8 +53,5 @@ jobs:
     #     pip install msedge-selenium-tools
     - name: Test
       run: |
-        cd e2e \
-        docker-compose -f docker-compose.yml up \
-          --abort-on-container-exit \
-          --exit-code-from e2e
+        cd e2e && docker-compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from e2e
         
