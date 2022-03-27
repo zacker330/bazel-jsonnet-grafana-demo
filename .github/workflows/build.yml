@@ -42,13 +42,15 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: 3.8
-    - name: Install dependencies
+    # - name: Install dependencies
+    #   run: |
+    #     set -ex
+    #     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    #     sudo apt install ./google-chrome-stable_current_amd64.deb
+    #     python -m pip install --upgrade pip
+    #     pip install -r requirements.txt
+    #     pip install msedge-selenium-tools
+    - name: Test
       run: |
-        set -ex
-        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-        sudo apt install ./google-chrome-stable_current_amd64.deb
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install msedge-selenium-tools
-    # - name: Run test   
-    #   run: python -m pytest tests/test_form.py 
+        "${GITHUB_WORKSPACE}/bin/bazel" test //...
+        
