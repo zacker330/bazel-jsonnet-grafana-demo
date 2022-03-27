@@ -50,3 +50,5 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install msedge-selenium-tools
+    # - name: Run test   
+    #   run: python -m pytest tests/test_form.py 
