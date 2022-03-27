@@ -35,10 +35,18 @@ jobs:
         mkdir -p "${GITHUB_WORKSPACE}/bin/"
         mv bazelisk-linux-amd64 "${GITHUB_WORKSPACE}/bin/bazel"
         chmod +x "${GITHUB_WORKSPACE}/bin/bazel"
-    # - name: Test
-    #   run: |
-    #     "${GITHUB_WORKSPACE}/bin/bazel" test //...
-
     - name: Build
       run: |
         "${GITHUB_WORKSPACE}/bin/bazel" build //...
+    - name: Install Python 3
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+    - name: Install dependencies
+      run: |
+        set -ex
+        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        sudo apt install ./google-chrome-stable_current_amd64.deb
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install msedge-selenium-tools
