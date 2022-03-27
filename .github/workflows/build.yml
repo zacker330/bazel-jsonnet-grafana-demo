@@ -55,7 +55,8 @@ jobs:
     - name: Test
       run: |
         GRAFANA_VERSION=${E2E_GRAFANA_VERSION} \
-        docker-compose -f e2e/docker-compose.yml up \
+        cd e2e
+        docker-compose -f docker-compose.yml up \
           --abort-on-container-exit \
           --exit-code-from e2e
         
