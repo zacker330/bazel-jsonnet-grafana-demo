@@ -8,6 +8,8 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+env:
+  E2E_GRAFANA_VERSION: 8.2.0
 
 jobs:
   build:
@@ -38,10 +40,10 @@ jobs:
     - name: Build
       run: |
         "${GITHUB_WORKSPACE}/bin/bazel" build //...
-    - name: Install Python 3
-      uses: actions/setup-python@v1
-      with:
-        python-version: 3.8
+    # - name: Install Python 3
+    #   uses: actions/setup-python@v1
+    #   with:
+    #     python-version: 3.8
     # - name: Install dependencies
     #   run: |
     #     set -ex
@@ -52,5 +54,8 @@ jobs:
     #     pip install msedge-selenium-tools
     - name: Test
       run: |
-        "${GITHUB_WORKSPACE}/bin/bazel" test //...
+        GRAFANA_VERSION=${E2E_GRAFANA_VERSION} \
+        docker-compose -f e2e/docker-compose.yml up \
+          --abort-on-container-exit \
+          --exit-code-from e2e
         

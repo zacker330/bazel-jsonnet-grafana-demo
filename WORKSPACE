@@ -25,27 +25,22 @@ new_git_repository(
     build_file ="//:grafonnet-lib.BUILD.bazel",
 )
 
-
-#  web test
+## docker build
 http_archive(
-    name = "io_bazel_rules_webtesting",
-    sha256 = "e9abb7658b6a129740c0b3ef6f5a2370864e102a5ba5ffca2cea565829ed825a",
-    urls = [
-        "https://github.com/bazelbuild/rules_webtesting/releases/download/0.3.5/rules_webtesting.tar.gz",
-    ],
+    name = "io_bazel_rules_docker",
+    sha256 = "85ffff62a4c22a74dbd98d05da6cf40f497344b3dbf1e1ab0a37ab2a1a6ca014",
+    strip_prefix = "rules_docker-0.23.0",
+    urls = ["https://github.com/bazelbuild/rules_docker/releases/download/v0.23.0/rules_docker-v0.23.0.tar.gz"],
 )
 
-load("@io_bazel_rules_webtesting//web:repositories.bzl", "web_test_repositories")
+load(
+    "@io_bazel_rules_docker//repositories:repositories.bzl",
+    container_repositories = "repositories",
+)
+container_repositories()
 
-web_test_repositories()
+load("@io_bazel_rules_docker//repositories:deps.bzl", container_deps = "deps")
+
+container_deps()
 
 
-load("@io_bazel_rules_webtesting//web/versioned:browsers-0.3.3.bzl", "browser_repositories")
-
-
-browser_repositories(chromium=True)
-
-## write test script using python
-load("@io_bazel_rules_webtesting//web:py_repositories.bzl", "py_repositories")
-
-py_repositories()
