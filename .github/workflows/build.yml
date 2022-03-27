@@ -9,8 +9,7 @@ on:
   pull_request:
     branches: [ master ]
 env:
-  E2E_GRAFANA_VERSION: 8.2.0
-
+  GRAFANA_VERSION: 8.2.0
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -54,8 +53,7 @@ jobs:
     #     pip install msedge-selenium-tools
     - name: Test
       run: |
-        GRAFANA_VERSION=${E2E_GRAFANA_VERSION} \
-        cd e2e
+        cd e2e \
         docker-compose -f docker-compose.yml up \
           --abort-on-container-exit \
           --exit-code-from e2e
