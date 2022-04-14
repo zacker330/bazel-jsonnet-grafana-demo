@@ -7,25 +7,8 @@ jsonnet_to_json(
     src = "grafana.jsonnet",
     # output filename
     outs = [
-        "main.tf.json"
-    ],
-    # grafonnet provide many templates to generate dashboard json 
-    deps = [
-        "//dashboards:dashboards",
-        "@grafonnet-lib//:grafonnet"
-    ]
-)
-
-
-jsonnet_to_json(
-    name = "grafana-yaml",
-    multiple_outputs = True,
-    yaml_stream = True,
-    # where src located
-    src = "grafana.jsonnet",
-    # output filename
-    outs = [
-        "app.yaml",
+        "main.tf.json",
+        "app.json"
     ],
     # grafonnet provide many templates to generate dashboard json 
     deps = [

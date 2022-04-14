@@ -1,8 +1,9 @@
+local dashboards = import './dashboards/dashboards.libsonnet';
 local secrets = import 'secrets.libsonnet';
 
 {
   // for helm chart
-  'app.yaml': {
+  'app.json': {
     rbac: {
       create: true,
       pspEnabled: true,
@@ -379,7 +380,7 @@ local secrets = import 'secrets.libsonnet';
       grafana: {
         url: 'http://127.0.0.1:3000',
         // https://registry.terraform.io/providers/grafana/grafana/latest/docs#auth
-        auth: 'eyJrIjoiOU1neGhsZDM4aFVEU1dVQjBWN0IxZXM5eW5BdEsxNlAiLCJuIjoiYWRtaW4iLCJpZCI6MX0=',
+        auth: 'admin:admin',
       },
     },
     resource: {
@@ -407,24 +408,26 @@ local secrets = import 'secrets.libsonnet';
       grafana_user: {
         justin: {
           email: 'justin@example.com',
+          password: '123456'
         },
         mm: {
           email: 'mm@goog.com',
+          password: '123456'
         },
       },
       grafana_folder_permission: {
-        base:: {
+        base:: {  
           permissions: [
             {
               role: 'Editor',
               permission: 'Edit',
             },
             {
-              team_id: '${grafana_team.infraTeam}',
+              team_id: '${grafana_team.infraTeam.id}',
               permission: 'Edit',
             },
             {
-              team_id: '${grafana_team.bizTeam}',
+              team_id: '${grafana_team.bizTeam.id}',
               permission: 'View',
             },
             {
@@ -442,20 +445,22 @@ local secrets = import 'secrets.libsonnet';
       },
       grafana_folder: {
         platformFoo: {
+        // uid: 'platform-for-id',
           title: 'platformFoo',
         },
         platformBar: {
+          // uid: 'platform-bar-id',
           title: 'platformBar',
         },
       },
       grafana_dashboard: {
         platformFooApplications: {
-          folder: '${grafana_folder.platformFoo.uid}',
-          config_json: '',
+          folder: '${grafana_folder.platformFoo.id}',
+          config_json: std.toString(dashboards._application),
         },
         platformFooInfra: {
-          folder: '${grafana_folder.platformBar.uid}',
-          config_json: '',
+          folder: '${grafana_folder.platformBar.id}',
+          config_json: std.toString(dashboards._infra),
         },
 
       },
