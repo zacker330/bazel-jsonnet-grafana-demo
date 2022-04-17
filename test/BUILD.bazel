@@ -1,0 +1,18 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_test")
+
+# go_test(
+#     name = "hello",
+#     srcs = ["main_test.go"],
+#     deps = [":com_github_gruntwork_io_terratest"]
+# )
+
+go_test(
+    name = "lib_test",
+    srcs = ["main_test.go"],
+    deps = [
+        "@com_github_gruntwork_io_terratest//modules/terraform",
+        "@com_github_stretchr_testify//assert",
+        "@com_github_testcontainers_testcontainers_go//:testcontainers-go",
+        "@com_github_testcontainers_testcontainers_go//wait",
+    ],
+)

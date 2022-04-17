@@ -370,11 +370,11 @@ local secrets = import 'secrets.libsonnet';
           version: '1.21.1',
         },
       },
-      backend: {
-        pg: {
-          conn_str: 'postgres://postgres:postgres@127.0.0.1:5432/grafana_terraform_backend?sslmode=disable',
-        },
-      },
+      // backend: {
+      //   pg: {
+      //     conn_str: 'postgres://postgres:postgres@127.0.0.1:5432/grafana_terraform_backend?sslmode=disable',
+      //   },
+      // },
     },
     provider: {
       grafana: {

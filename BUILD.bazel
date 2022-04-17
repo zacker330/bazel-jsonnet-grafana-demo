@@ -1,20 +1,29 @@
 load("@io_bazel_rules_jsonnet//jsonnet:jsonnet.bzl", "jsonnet_library", "jsonnet_to_json")
+load("@bazel_gazelle//:def.bzl", "gazelle")
+# gazelle:showme.codes
+gazelle(name = "gazelle")
 
 jsonnet_to_json(
     name = "grafana",
-    multiple_outputs = True,
     # where src located
     src = "grafana.jsonnet",
     # output filename
     outs = [
+        "app.json",
         "main.tf.json",
-        "app.json"
     ],
-    # grafonnet provide many templates to generate dashboard json 
+    multiple_outputs = True,
+    # grafonnet provide many templates to generate dashboard json
     deps = [
-        "//dashboards:dashboards",
-        "@grafonnet-lib//:grafonnet"
-    ]
+        "//dashboards",
+        "@grafonnet-lib//:grafonnet",
+    ],
 )
 
+# // for testing
+# load("@io_bazel_rules_go//go:def.bzl", "go_binary")
 
+# go_binary(
+#     name = "hello",
+#     srcs = ["main_test.go"],
+# )
