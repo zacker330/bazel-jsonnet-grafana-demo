@@ -20,7 +20,7 @@ go_library(
     importpath = "golang.org/x/oauth2/google",
     visibility = ["//visibility:public"],
     deps = [
-        "//:oauth2",
+        "//:org_golang_x_oauth2",
         "//authhandler",
         "//google/internal/externalaccount",
         "//internal",
